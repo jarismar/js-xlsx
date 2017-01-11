@@ -1201,8 +1201,9 @@ function read_date(blob, offset) {
 
 var fs;
 function readFileSync(filename, options) {
-	if(fs === undefined) fs = require('fs');
-	return parse(fs.readFileSync(filename), options);
+	throw new Error('Access to file system was deprecated.')
+	// if(fs === undefined) fs = require('fs');
+	// return parse(fs.readFileSync(filename), options);
 }
 
 function readSync(blob, options) {
@@ -1331,15 +1332,15 @@ function getzipdata(zip, file, safe) {
 	try { return getzipdata(zip, file); } catch(e) { return null; }
 }
 
-var _fs, jszip;
-if(typeof JSZip !== 'undefined') jszip = JSZip;
-if (typeof exports !== 'undefined') {
-	if (typeof module !== 'undefined' && module.exports) {
-		if(has_buf && typeof jszip === 'undefined') jszip = require('js'+'zip');
-		if(typeof jszip === 'undefined') jszip = require('./js'+'zip').JSZip;
-		_fs = require('f'+'s');
-	}
-}
+var _fs, jszip = require('jszip').JSZip;
+// if(typeof JSZip !== 'undefined') jszip = JSZip;
+// if (typeof exports !== 'undefined') {
+// 	if (typeof module !== 'undefined' && module.exports) {
+// 		if(has_buf && typeof jszip === 'undefined') jszip = require('js'+'zip');
+// 		if(typeof jszip === 'undefined') jszip = require('./js'+'zip').JSZip;
+// 		_fs = require('f'+'s');
+// 	}
+// }
 var attregexg=/([\w:]+)=((?:")([^"]*)(?:")|(?:')([^']*)(?:'))/g;
 var tagregex=/<[^>]*>/g;
 var nsregex=/<\w*:/, nsregex2 = /<(\/?)\w+:/;
@@ -1768,11 +1769,11 @@ function shift_range_xls(cell, range) {
 var OFFCRYPTO = {};
 var make_offcrypto = function(O, _crypto) {
 	var crypto;
-	if(typeof _crypto !== 'undefined') crypto = _crypto;
-	else if(typeof require !== 'undefined') {
-		try { crypto = require('cry'+'pto'); }
-		catch(e) { crypto = null; }
-	}
+	// if(typeof _crypto !== 'undefined') crypto = _crypto;
+	// else if(typeof require !== 'undefined') {
+	// 	try { crypto = require('cry'+'pto'); }
+	// 	catch(e) { crypto = null; }
+	// }
 
 	O.rc4 = function(key, data) {
 		var S = new Array(256);
@@ -11082,9 +11083,10 @@ var XLSRecordEnum = {
 
 /* Helper function to call out to ODS parser */
 function parse_ods(zip, opts) {
-	if(typeof module !== "undefined" && typeof require !== 'undefined' && typeof ODS === 'undefined') ODS = require('./od' + 's');
-	if(typeof ODS === 'undefined' || !ODS.parse_ods) throw new Error("Unsupported ODS");
-	return ODS.parse_ods(zip, opts);
+	throw new Error('ODS support disabled.');
+	// if(typeof module !== "undefined" && typeof require !== 'undefined' && typeof ODS === 'undefined') ODS = require('./od' + 's');
+	// if(typeof ODS === 'undefined' || !ODS.parse_ods) throw new Error("Unsupported ODS");
+	// return ODS.parse_ods(zip, opts);
 }
 function fix_opts_func(defaults) {
 	return function fix_opts(opts) {

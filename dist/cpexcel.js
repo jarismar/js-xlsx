@@ -804,11 +804,13 @@ if (typeof module !== 'undefined' && module.exports) module.exports = cptable;
 (function(root, factory) {
   "use strict";
   if(typeof cptable === "undefined") {
-    if(typeof require !== "undefined"){
-      var cpt = require('./cpt' + 'able');
-      if (typeof module !== 'undefined' && module.exports) module.exports = factory(cpt);
-      else root.cptable = factory(cpt);
-    } else throw new Error("cptable not found");
+    throw new Error("cptable not found");
+
+    // if(typeof require !== "undefined"){
+    //   var cpt = require('./cpt' + 'able');
+    //   if (typeof module !== 'undefined' && module.exports) module.exports = factory(cpt);
+    //   else root.cptable = factory(cpt);
+    // } else throw new Error("cptable not found");
   } else cptable = factory(cptable);
 }(this, function(cpt){
   "use strict";
